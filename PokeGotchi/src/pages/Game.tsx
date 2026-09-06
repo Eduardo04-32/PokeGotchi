@@ -62,22 +62,26 @@ export default function Game({ pokemon }: Props) {
 
   return (
     <ScrollView style={styles.container}>
+
       <Text style={styles.title}>POKÉGOTCHI</Text>
+
       <Card style={styles.pokemon}>
-        <Image source={{ uri: pokemon.image }} style={styles.image} />
-        <Text style={styles.message}>{mensagem}</Text>
+        <Image source={{ uri: pokemon.image }} style={styles.image} /> // Aqui fica responsavel pela imagem que usuario decidir
+        <Text style={styles.message}>{mensagem}</Text>  // a mensagem que o bixo quer fazzer
       </Card>
+      
       <Card style={styles.card}>
-        <Text style={styles.name}>{pokemon.name.toUpperCase()}</Text>
-        <Text>#{pokemon.id} • Tipo: {pokemon.type.toUpperCase()}</Text>
-        <Text>Altura: {pokemon.height / 10} m</Text>
-        <Text>Peso: {pokemon.weight / 10} kg</Text>
+        <Text style={styles.name}>{pokemon.name.toUpperCase()}</Text>  // nome do bixo
+        <Text>#{pokemon.id} • Tipo: {pokemon.type.toUpperCase()}</Text>  // o que ele é 
+        <Text>Altura: {pokemon.height / 10} m</Text>  // a alita dele 
+        <Text>Peso: {pokemon.weight / 10} kg</Text> // o peso dele
         <View style={styles.row}>
           <Text>NÍVEL {nivel}</Text>
           <Text>{xp}/100 XP</Text>
         </View>
         <ProgressBar progress={xp / 100} />
       </Card>
+      
       <Card style={styles.card}>
         <Text style={styles.section}>CUIDADOS</Text>
         <Text>Fome: {fome}%</Text>
@@ -89,6 +93,7 @@ export default function Game({ pokemon }: Props) {
         <Text>Higiene: {higiene}%</Text>
         <ProgressBar progress={higiene / 100} />
       </Card>
+
       <Card style={styles.card}>
         <Text style={styles.section}>AÇÕES</Text>
         <Button mode="contained" onPress={alimentar}>ALIMENTAR</Button>

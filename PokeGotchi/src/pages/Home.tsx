@@ -38,21 +38,24 @@ const Home = () => {
         </Text>
 
         <CardPokemon
-          nome="pikachu"
-          imagem="teste"
-          cor="rgba(254, 255, 178, 1)"
-        />
-
-        <CardPokemon
-          nome="charmander"
-          imagem="teste2"
-          cor="rgba(253, 208, 148, 1)"
+          nome="squirtle"
+          imagem="teste3"
+          cor='rgba(254, 255, 178, 1)'
+          onPress={() => navigation.navigate("Game")}
         />
 
         <CardPokemon
           nome="squirtle"
           imagem="teste3"
-          cor="rgba(211, 235, 252, 1)"
+          cor='rgba(253, 208, 148, 1)'
+          onPress={() => navigation.navigate("Game")}
+        />
+
+        <CardPokemon
+          nome="squirtle"
+          imagem="teste3"
+          cor='rgba(211, 235, 252, 1)'
+          onPress={() => navigation.navigate("Game")}
         />
 
       </View>

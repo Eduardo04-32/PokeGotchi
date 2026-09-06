@@ -5,6 +5,7 @@ interface PokemonCardProps {
   nome: string;
   imagem: string; 
   cor: string;
+  onPress: () => void;
 }
 
 const CardPokemon = ({ nome, imagem, cor,  }: PokemonCardProps) => {
