@@ -1,7 +1,8 @@
 export interface PokemonViewModel
+
 {
     id: number;
-    name: string;
+    nome: string;
     image: string;
     type: string;
     height: number;
