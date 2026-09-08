@@ -1,14 +1,28 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import CardPokemon from '../components/CardPokemon'
+import { useAudioPlayer } from 'expo-audio'
 
-const Home = () => {
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { RootStackParamList } from '../types/Navegation'
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>
+
+const Home = ({ navigation }: Props) => {
+
+  const player = useAudioPlayer(
+    require('../../assets/water_drip.mp3')
+  )
+
+  const tocar = () => {
+    player.seekTo(0)
+    player.play()
+  }
+
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
 
-      {/* CABEÇALHO */}
       <View style={styles.apresenta}>
-
         <Image
           source={require('../../assets/pokemon.png')}
           style={styles.foto}
@@ -22,10 +36,8 @@ const Home = () => {
         <Text style={styles.subtitulo}>
           E S C O L H A  S E U  P A R C E I R O
         </Text>
-
       </View>
 
-      {/* CONTEÚDO */}
       <View style={styles.conteudo}>
 
         <Text style={styles.titulo}>
@@ -38,29 +50,47 @@ const Home = () => {
         </Text>
 
         <CardPokemon
-          nome="squirtle"
-          imagem="teste3"
-          cor='rgba(254, 255, 178, 1)'
-          onPress={() => navigation.navigate("Game")}
+          nome="bulbasaur"
+          imagem="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+          cor="rgba(254, 255, 178, 1)"
+          onPress={() => {
+            tocar()
+
+            navigation.navigate('Game', {
+              pokemon: 'bulbasaur'
+            })
+          }}
+        />
+
+        <CardPokemon
+          nome="charmander"
+          imagem="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"
+          cor="rgba(253, 208, 148, 1)"
+          onPress={() => {
+            tocar()
+
+            navigation.navigate('Game', {
+              pokemon: 'charmander'
+            })
+          }}
         />
 
         <CardPokemon
           nome="squirtle"
-          imagem="teste3"
-          cor='rgba(253, 208, 148, 1)'
-          onPress={() => navigation.navigate("Game")}
-        />
+          imagem="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"
+          cor="rgba(211, 235, 252, 1)"
+          onPress={() => {
+            tocar()
 
-        <CardPokemon
-          nome="squirtle"
-          imagem="teste3"
-          cor='rgba(211, 235, 252, 1)'
-          onPress={() => navigation.navigate("Game")}
+            navigation.navigate('Game', {
+              pokemon: 'squirtle'
+            })
+          }}
         />
 
       </View>
 
-    </View>
+    </ScrollView>
   )
 }
 
@@ -69,53 +99,48 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8F5ED',
+    backgroundColor: '#fff',
   },
 
   apresenta: {
-    height: 280,
-    backgroundColor: '#D92D27',
-    borderBottomLeftRadius: 55,
-    borderBottomRightRadius: 55,
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingTop: 30,
+    paddingBottom: 20,
   },
 
   foto: {
-    width: 150,
-    height: 120,
-    marginBottom: 20,
+    width: 250,
+    height: 150,
   },
 
   logo: {
-    fontSize: 45,
+    fontSize: 32,
     fontWeight: '900',
-    color: '#FFD42A',
+    marginTop: 10,
   },
 
   subtitulo: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '900',
-    marginTop: 10,
-    letterSpacing: 2,
+    fontSize: 12,
+    fontWeight: '700',
+    marginTop: 8,
   },
 
   conteudo: {
-    paddingHorizontal: 38,
-    paddingTop: 15,
+    alignItems: 'center',
+    paddingBottom: 30,
   },
 
   titulo: {
-    fontSize: 30,
+    fontSize: 24,
     fontWeight: '800',
-    color: '#171717',
+    marginTop: 10,
   },
 
   descricao: {
-    fontSize: 21,
-    lineHeight: 32,
-    color: '#666666',
-    marginBottom: 35,
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 8,
+    marginBottom: 15,
+    paddingHorizontal: 25,
   },
 })
